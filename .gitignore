@@ -1,0 +1,8 @@
+# Ignore internal apps
+Apps/AdministrativeApps/
+Apps/AnalyticalApps/
+Apps/CommunicationApps/
+Apps/CoreApps/
+Apps/IntegrationApps/
+Apps/OperationalApps/
+Apps/ServiceApps/
