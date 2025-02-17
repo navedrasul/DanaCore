@@ -1,0 +1,41 @@
+digraph DanaCore {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+
+    // Categories
+    CoreApps [label="Core Apps", shape=component];
+    OperationalApps [label="Operational Apps", shape=component];
+    AdministrativeApps [label="Administrative Apps", shape=component];
+    AnalyticalApps [label="Analytical Apps", shape=component];
+    IntegrationApps [label="Integration Apps", shape=component];
+    CommunicationApps [label="Communication & Notification Apps", shape=component];
+    ServiceApps [label="Service Apps", shape=component];
+
+    // Subcategories
+    CoreAppsSub [label="Dashboard App\nRecord Management App\nWorkflow Automation App", shape=polygon];
+    OperationalAppsSub [label="Sales Management App\nInventory Management App\nFinance & Accounting App", shape=polygon];
+    AdministrativeAppsSub [label="Configuration Management App\nMonitoring & Alerts App\nUser Access Management App", shape=polygon];
+    AnalyticalAppsSub [label="Reporting App\nPredictive Analytics App\nBusiness Intelligence (BI) App", shape=polygon];
+    IntegrationAppsSub [label="Payment Gateway Integration App\nCRM Integration App\nAPI Management App", shape=polygon];
+    CommunicationAppsSub [label="Email & SMS App\nTask Notification App\nCollaboration App", shape=polygon];
+    ServiceAppsSub [label="Job Scheduler App\nEvent Processing App\nAudit Trail App", shape=polygon];
+
+    // Category Relationships
+    CoreApps -> OperationalApps [label="Supports domain-specific operations"];
+    OperationalApps -> AnalyticalApps [label="Provides data for analytics"];
+    CoreApps -> AnalyticalApps [label="Feeds core data for insights"];
+    AdministrativeApps -> ServiceApps [label="Configures and monitors services"];
+    IntegrationApps -> CommunicationApps [label="Facilitates external notifications"];
+    ServiceApps -> CommunicationApps [label="Handles backend notification tasks"];
+    ServiceApps -> AnalyticalApps [label="Supports analytics with background processing"];
+    ServiceApps -> CoreApps [label="Supports operational processes"];
+    
+    // Subcategory Relationships
+    CoreApps -> CoreAppsSub;
+    OperationalApps -> OperationalAppsSub;
+    AdministrativeApps -> AdministrativeAppsSub;
+    AnalyticalApps -> AnalyticalAppsSub;
+    IntegrationApps -> IntegrationAppsSub;
+    CommunicationApps -> CommunicationAppsSub;
+    ServiceApps -> ServiceAppsSub;
+}

@@ -1,0 +1,112 @@
+digraph DanaCore_ERPSys {
+    rankdir=LR;
+    node [shape=box, style=filled, fillcolor=lightgray];
+
+    // Core Components
+    subgraph cluster_core {
+        label="Core System Components";
+        api_gateway [label="API Gateway\n(Secured entry point)"];
+        security_layer [label="Security Layer\n(RBAC, Encryption)"];
+        database [label="Database\n(PostgreSQL / MySQL)"];
+        message_queue [label="Message Queue\n(RabbitMQ)"];
+    }
+
+    // Application Layers
+    subgraph cluster_apps {
+        label="Application Layers";
+        style=dotted;
+        
+        // Core Apps
+        dashboard_app [label="Dashboard App\n(Real-time KPIs)"];
+        record_mgmt_app [label="Record Management App\n(CRUD operations)"];
+        workflow_auto_app [label="Workflow Automation App\n(Task Delegation)"];
+
+        // Operational Apps
+        sales_mgmt_app [label="Sales Management App\n(Orders, Quotes)"];
+        inventory_mgmt_app [label="Inventory Management App\n(Stock Tracking)"];
+        finance_mgmt_app [label="Finance & Accounting App\n(Invoicing, Payroll)"];
+
+        // Administrative Apps
+        config_mgmt_app [label="Configuration Management App\n(Workflow, Roles)"];
+        monitoring_alerts_app [label="Monitoring & Alerts App\n(System Health)"];
+        user_access_mgmt_app [label="User Access Management App\n(RBAC, Onboarding)"];
+
+        // Analytical Apps
+        reporting_app [label="Reporting App\n(Operational Reports)"];
+        predictive_analytics_app [label="Predictive Analytics App\n(AI/ML Forecasting)"];
+        bi_app [label="Business Intelligence (BI) App\n(Data Visualizations)"];
+
+        // Integration Apps
+        payment_gateway_integration_app [label="Payment Gateway Integration App\n(Online Payments)"];
+        crm_integration_app [label="CRM Integration App\n(Data Sync)"];
+        api_mgmt_app [label="API Management App\n(External API Keys)"];
+
+        // Communication & Notification Apps
+        email_sms_app [label="Email & SMS App\n(Alerts, Notifications)"];
+        task_notification_app [label="Task Notification App\n(Pending Tasks)"];
+        collaboration_app [label="Collaboration App\n(Team Messaging)"];
+
+        // Service Apps
+        job_scheduler_app [label="Job Scheduler App\n(Automated Tasks)"];
+        event_processing_app [label="Event Processing App\n(Asynchronous Tasks)"];
+        audit_trail_app [label="Audit Trail App\n(System Logs)"];
+    }
+
+    // DevOps & Monitoring
+    subgraph cluster_devops {
+        label="DevOps & Monitoring";
+        ci_cd_pipeline [label="CI/CD Pipeline\n(Jenkins, Docker, Kubernetes)"];
+        monitoring_obs [label="Monitoring & Observability\n(Prometheus + Grafana, ELK)"];
+        load_balancer [label="Load Balancer\n(High Availability)"];
+    }
+
+    // Relationships
+    api_gateway -> dashboard_app;
+    api_gateway -> record_mgmt_app;
+    api_gateway -> workflow_auto_app;
+    api_gateway -> sales_mgmt_app;
+    api_gateway -> inventory_mgmt_app;
+    api_gateway -> finance_mgmt_app;
+    api_gateway -> config_mgmt_app;
+    api_gateway -> monitoring_alerts_app;
+    api_gateway -> user_access_mgmt_app;
+    api_gateway -> reporting_app;
+    api_gateway -> predictive_analytics_app;
+    api_gateway -> bi_app;
+    api_gateway -> payment_gateway_integration_app;
+    api_gateway -> crm_integration_app;
+    api_gateway -> api_mgmt_app;
+    api_gateway -> email_sms_app;
+    api_gateway -> task_notification_app;
+    api_gateway -> collaboration_app;
+    api_gateway -> job_scheduler_app;
+    api_gateway -> event_processing_app;
+    api_gateway -> audit_trail_app;
+
+    message_queue -> event_processing_app;
+    message_queue -> job_scheduler_app;
+
+    ci_cd_pipeline -> api_gateway;
+    ci_cd_pipeline -> message_queue;
+    ci_cd_pipeline -> database;
+    ci_cd_pipeline -> monitoring_obs;
+
+    load_balancer -> api_gateway;
+
+    database -> record_mgmt_app;
+    database -> sales_mgmt_app;
+    database -> inventory_mgmt_app;
+    database -> finance_mgmt_app;
+    database -> reporting_app;
+    database -> predictive_analytics_app;
+    database -> bi_app;
+
+    security_layer -> api_gateway;
+    security_layer -> user_access_mgmt_app;
+    security_layer -> monitoring_alerts_app;
+
+    monitoring_obs -> api_gateway;
+    monitoring_obs -> database;
+    monitoring_obs -> ci_cd_pipeline;
+    monitoring_obs -> load_balancer;
+}
